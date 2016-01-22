@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'messages/create'
 
-  get 'messages/show'
+  post '/messages' => 'messages#create'
+  get '/messages/:id' => 'messages#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
