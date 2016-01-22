@@ -17,5 +17,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    message = Message.find_by(:message_id => params[:id].to_s)
+    render :json => message.as_json(except:[:id, :created_at, :updated_at])
   end
 end
