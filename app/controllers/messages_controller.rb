@@ -5,12 +5,30 @@ class MessagesController < ApplicationController
       new_message = Hash.new
 
       new_message[:message_id] = params['id']
-      new_message[:from] = params['payload']['headers'][2]['value']
-      new_message[:to] = params['payload']['headers'][3]['value']
-      new_message[:date] = params['payload']['headers'][1]['value']
-      new_message[:subject] = params['payload']['headers'][5]['value']
-      new_message[:body] = params['payload']['parts'][0]['body']['data']
 
+      params['payload']['headers'].each do |data|
+        if data['name'] == "Date"
+            new_message[:date] = data['value']
+        elsif data['name'] == "From"
+            new_message[:from] = data['value']
+        elsif data['name'] == "To"
+            new_message[:to] = data['value']
+        elsif data['name'] == "Subject"
+            new_message[:subject] = data['value']
+        end
+      end
+
+      type = []
+      body = []
+      params['payload']['parts'].each do |data|
+          type << data['mimeType']
+          body << data['body']['data']
+      end
+
+      new_message[:type1] = type[0]
+      new_message[:type2] = type[1]
+      new_message[:body1] = body[0]
+      new_message[:body2] = body[1]
       final_message = Message.create(new_message)
 
       render :json => new_message, status: 201
