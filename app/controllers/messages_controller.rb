@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
 #
 #   def msg_params
 #
-#
+#     params.permit([:id, :payload => [{:headers => [:name, :value]}, {:parts => [({ :headers => [:name, :value]}, :body => [:data]), ({ :headers => [:name, :value]}, :body => [:data])]}]])
 #
 #   end
 end
