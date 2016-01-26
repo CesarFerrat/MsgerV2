@@ -35,7 +35,19 @@ class MessagesController < ApplicationController
   end
 
   def show
-    message = Message.find_by(:message_id => params[:id].to_s)
-    render :json => message.as_json(except:[:id, :created_at, :updated_at])
+    @message = Message.find_by(:message_id => params[:id].to_s)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @message, root: false }
+    end
   end
+
+# private
+#
+#   def msg_params
+#
+#
+#
+#   end
 end
