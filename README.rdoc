@@ -1,28 +1,23 @@
-== README
+Code challenge:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This code challenge is meant to give an understanding of how you would approach a real-world problem. Please approach this challenge the way you would approach any programming task at work: your code should be production quality, it should be self-explanatory, and it should be done quickly. There is no time limit but it should not take more than a few hours.
 
-Things you may want to cover:
+Please create a new git repository for this challenge and regularly commit your code while working. Do not commit private information to the repository. (use .gitignore) Upload the repository to GitHub when done and send the link to it.
 
-* Ruby version
+The challenge:
 
-* System dependencies
+Create a Rails app. The app should accept the JSON payload in 'message.json' as an anonymous POST submission, then serialize it and save it in a sqlite-compatible database.
 
-* Configuration
+You can make the following assumptions about this part of the challenge:
 
-* Database creation
+- There will be a regular flow of POST submissions from a remote server
+- The structure of 'message.json' will not change, but the values may change
+- Only relevant and useful data about the message should be kept
 
-* Database initialization
+Separately, the same Rails app should provide a way for clients (like iOS and Android apps) to read messages from the database.
 
-* How to run the test suite
+You can make the following assumptions about this part of the challenge:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- There is no authentication layer and there are no users; all clients request data anonymously and all clients receive the same data
+- The client already knows the Ids of the messages it needs to retrieve from your app
+- The only thing the client will do with the data is render a simple view of the message
